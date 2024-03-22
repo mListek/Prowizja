@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EndDate="[new DateOnly(2024, 03, 31)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="EndDate" Type="InArgument(s:DateOnly)" />
   </x:Members>
@@ -6,7 +6,7 @@
     <x:Null />
   </VisualBasic.Settings>
   <sap2010:Annotation.AnnotationText>UPTF00000088eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8VmVyc2lvbj5rX19CYWNraW5nRmllbGQiOjF9</sap2010:Annotation.AnnotationText>
-  <sap:VirtualizedContainerService.HintSize>590,1434</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>597,4414</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -42,6 +42,19 @@
       <x:String>UiPath.Core.Activities.DateTimeUtilities</x:String>
       <x:String>UiPath.Activities.System.Arrays</x:String>
       <x:String>UiPath.Activities.System.Collections</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -93,9 +106,25 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
       <AssemblyReference>System.Collections</AssemblyReference>
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="496,1369" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="514,4349" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateOnly" Name="BorderDate" />
       <Variable x:TypeArguments="scg:List(s:DateOnly)" Name="ListOfDates">
@@ -110,20 +139,33 @@
       </Variable>
       <Variable x:TypeArguments="s:DateOnly" Name="StartCopyingDate" />
       <Variable x:TypeArguments="s:DateOnly" Name="EndCopyingDate" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="Invoices" />
+      <Variable x:TypeArguments="x:String" Name="strInvoice" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetDateFromTheUser" sap:VirtualizedContainerService.HintSize="434,153" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetDateFromTheUser.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="s:DateOnly" x:Key="EndDate">
-          <VisualBasicReference x:TypeArguments="s:DateOnly" ExpressionText="EndDate" />
-        </OutArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,340" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetDateFromTheUser" sap:VirtualizedContainerService.HintSize="354,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetDateFromTheUser.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="s:DateOnly" x:Key="EndDate">
+                <VisualBasicReference x:TypeArguments="s:DateOnly" ExpressionText="EndDate" />
+              </OutArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[BorderDate]</OutArgument>
       </Assign.To>
@@ -131,10 +173,10 @@
         <InArgument x:TypeArguments="s:DateOnly">[new DateOnly(EndDate.Year, EndDate.Month, 1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
-    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
+    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[StartCopyingDate]</OutArgument>
       </Assign.To>
@@ -142,7 +184,7 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddMonths(-3)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[EndCopyingDate]</OutArgument>
       </Assign.To>
@@ -150,7 +192,145 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddDays(-1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,130" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Start: &quot; + StartCopyingDate.ToString(&quot;dd-MM-yyyy&quot;)]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;End: &quot; + EndCopyingDate.ToString(&quot;dd-MM-yyyy&quot;)]" />
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Server Website" sap:VirtualizedContainerService.HintSize="452,1633" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Always" ScopeGuid="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Scrape Data" sap:VirtualizedContainerService.HintSize="416,1376" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Double Click Certificate Popup" sap:VirtualizedContainerService.HintSize="354,197" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="444, 148, 406, 68" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;ctrl name='Wybierz certyfikat na potrzeby uwierzytelniania' role='dialog' /&gt;&lt;ctrl name='Wybierz pozycję z listy certyfikatów' role='table' /&gt;&lt;ctrl name='Zosia, DRS-SERVER-FJ-CA, , 8.04.2018' role='list item' /&gt;" FuzzySelectorArgument="&lt;ctrl name='Wybierz certyfikat na potrzeby uwierzytelniania' role='dialog' /&gt;&lt;ctrl name='Wybierz pozycję z listy certyfikatów' role='table' /&gt;&lt;ctrl name='Zosia, DRS-SERVER-FJ-CA, , 8.04.2018' role='list item' automationid='' check:fulltext='Zosia, DRS-SERVER-FJ-CA, , 8.04.2018' /&gt;" Guid="9e9206fc-1c42-4d49-93d8-5da7b3562018" ImageBase64="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" InformativeScreenshot="7a2d732a507ce94bdd8c14295e15f0f7.png" ScopeSelectorArgument="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='Nowa karta — Osobisty — Microsoft​ Edge' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V3" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click To Show Invoices" sap:VirtualizedContainerService.HintSize="354,197" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" DesignTimeRectangle="24, 249, 13, 13" DesignTimeScaleFactor="1" ElementType="CheckBox" FullSelectorArgument="&lt;webctrl name='wdetal' tag='INPUT' type='checkbox' /&gt;" FuzzySelectorArgument="&lt;webctrl name='wdetal' tag='INPUT' type='checkbox' class='' aaname='' /&gt;" Guid="8e6ce0b4-cf46-4b6b-a628-4330a422fdbe" InformativeScreenshot="806d0b7f16e9d0ac850233384e8dcbbb.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CvElementArea="20, 249, 108, 16" CvTextArea="42, 252, 72, 12" CvTextArgument="pokaz faktury" CvType="Button" DesignTimeRectangle="43, 252, 71, 12" FullSelectorArgument="&lt;webctrl aaname='pokaż faktury' innertext='pokaż faktury' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='pokaż faktury' innertext='pokaż faktury' tag='B' type='' class='' check:text='pokaż faktury' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEsAAAAQCAYAAABeB4LeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGESURBVFhH7ZPtTcRADETTGuXQCsXQDAWFPHRvGVk+sskPJMRmZK13/TFj627b1zf9rWVd+Lbt2NfCJML9PXwcBvP74/5XEO49vDzsCs6WxTvxmZxn8auaZhDuPdxZ1hleDzvr+dOyZurvYDiSQ8RZhbwd5jsmclmcxvz1aPaqfepQHU9qMj+XpU9trfeOHoBPP6B23jyNAevHXUdCkyXJGCeQJH0HUhRvEhEzX9g/xYjMlxvk39d3++SQWW/82bK4C3OB/a0DwzHIWe912GwkIZaCgeRY1js01qHyAfMx+NWg5VBXltXp4mw16ORy6r0WGqMp7/ieKcqaWs/d3h0y32HJdRh8NchLjejqU5e55KQuwN0azsRwJLeRBRnjBElSfeodSrLMqTwdclj8Tkfnu5Cszzx1yZ26hHNnPzEcmyoO401kE0wkYQrLPsStyXetisphHRCzD1qSC6SO1Ar05eYEWSPkq+9gOJX8v8JldXsYzlrW9y+v+1V9YX3T31rW9Lfvn8C4yaV3vg1/AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Start Date" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,258" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="DebuggerApi" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Text="[StartCopyingDate.ToString(&quot;dd.MM.yyyy&quot;)]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" CvTextArea="49, 166, 80, 11" CvTextArgument="DateOnly.Now" CvType="Text" DesignTimeRectangle="47, 161, 116, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='date' tag='INPUT' class='' aaname='' /&gt;" Guid="7330d50a-8491-4fa1-a68d-7fe5e444c62e" InformativeScreenshot="111eb0532ef1ebc4d37a5a1f695fff9b.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CvTextArea="23, 172, 19, 11" CvTextArgument="Od:" CvType="Text" DesignTimeRectangle="24, 172, 18, 12" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl colName='okres wystawienia' innertext='Od:' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl colName='okres wystawienia' innertext='Od:' tag='P' type='' class='' aaname='Od:' check:text='Od:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhP7ZLbDYAgDEW7mmxD2MSwCi5DwjpXLRWwPmKI/nkSPoD2QCmEj/jFhYM4WALRNgx8lA3N5ECDR5KpZidmaRu8Jl/JH4ujhzmR8GE25AnH5GqcbcTrujqkivl2DqKolJsl+IFgxpx+qE7xXKwreu0pusUL983rfQohjYabc/rdupr3Mr9YAGYukPgnLQAJmQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                      <uix:Target CvTextArea="44, 145, 99, 11" CvTextArgument="okres wystawienia" CvType="Text" DesignTimeRectangle="23, 143, 141, 14" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' tag='TH' type='' class='f' check:text='okres wystawienia' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJEAAAASCAYAAABb/DxVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIISURBVGhD7ZRRTsQwDET3anxzEq7CYeAwHKjsk/pgZKWgbZXCgj2y4jr2OHG8e1laWg5KD1HLYfkYokujcSOUHqLGbig9RI3dUH52iF6uelnXe8RD2HthD97W71txNP8AlB6ivXi+Kmf/x1DOGyIarvIAIIdImz1tfunu80vDVoWx6ugXid+aT+u3cdiP66ovB0RbBaOa8qL+QyWP5ycu9+SydvJ45sytezXfnhk/Eco5Q8TFbKyXZtW2oV46/cIcQJx8yc06alyNr/V9JOslD/60jfHMQB4gF760jalnzTPA6f6Ix3Ow8g228tM/Ccr8IcpmiNpA1QvrN6fGqcCGpq8i+Vitj9p0v+t52ZfbWJBDJIxDMz9rueeqTd2spVKnnmk0wPbOWFX/BCi/Y4hsHj6g35z6XVEbNwJ+HxIeVpQHAdYYDYd7KDkg47SJq/dlz1rW5Rzmyk2ecRUjzlG+vNjpnwRl/hCBbI6XYx3Z2QBWwbdD5kNUezQAwgaz+ihoNlmffPrgBfi9R9aSG9Sz11p5joxnT07s9Msh59YQZZ+TaxKUc4YIcCHVR7EBNscmVD/QpwobrGZOonJmw4UP/FVdHyX9r2HDyeodQdaq5/BbXvOTwzuaszVE2qg85kyAct4Q3QPyn6bxLZQeIpD/ZhN/uX8NSg9RYzeUT6ulZaf0ELUclGV5B2WLGncsMCR7AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type End Date" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,258" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="DebuggerApi" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Text="[EndCopyingDate.ToString(&quot;dd.MM.yyyy&quot;)]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" CvTextArea="50, 135, 78, 11" CvTextArgument="22.03.2024" CvType="Text" DesignTimeRectangle="47, 129, 116, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='dDo' tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='dDo' type='date' tag='INPUT' class='' aaname='' /&gt;" Guid="30a45448-d015-46f2-9432-c6d465f8a817" InformativeScreenshot="48238df8b8a3055d0efa35da18b834a1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target CvTextArea="44, 92, 99, 11" CvTextArgument="okres wystawienia" CvType="Text" DesignTimeRectangle="23, 90, 141, 14" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' tag='TH' type='' class='f' check:text='okres wystawienia' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJEAAAASCAYAAABb/DxVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIISURBVGhD7ZRRTsQwDET3anxzEq7CYeAwHKjsk/pgZKWgbZXCgj2y4jr2OHG8e1laWg5KD1HLYfkYokujcSOUHqLGbig9RI3dUH52iF6uelnXe8RD2HthD97W71txNP8AlB6ivXi+Kmf/x1DOGyIarvIAIIdImz1tfunu80vDVoWx6ugXid+aT+u3cdiP66ovB0RbBaOa8qL+QyWP5ycu9+SydvJ45sytezXfnhk/Eco5Q8TFbKyXZtW2oV46/cIcQJx8yc06alyNr/V9JOslD/60jfHMQB4gF760jalnzTPA6f6Ix3Ow8g228tM/Ccr8IcpmiNpA1QvrN6fGqcCGpq8i+Vitj9p0v+t52ZfbWJBDJIxDMz9rueeqTd2spVKnnmk0wPbOWFX/BCi/Y4hsHj6g35z6XVEbNwJ+HxIeVpQHAdYYDYd7KDkg47SJq/dlz1rW5Rzmyk2ecRUjzlG+vNjpnwRl/hCBbI6XYx3Z2QBWwbdD5kNUezQAwgaz+ihoNlmffPrgBfi9R9aSG9Sz11p5joxnT07s9Msh59YQZZ+TaxKUc4YIcCHVR7EBNscmVD/QpwobrGZOonJmw4UP/FVdHyX9r2HDyeodQdaq5/BbXvOTwzuaszVE2qg85kyAct4Q3QPyn6bxLZQeIpD/ZhN/uX8NSg9RYzeUT6ulZaf0ELUclGV5B2WLGncsMCR7AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                      <uix:Target CvElementArea="46, 150, 109, 18" CvType="InputBox" DesignTimeRectangle="47, 151, 106, 16" ElementType="DropDown" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SELECT' innertext='     -okresy czasu-     dziś     ostatnie 7 dni     zeszły tydzień     ten miesiąc     zeszły miesiąc     ten rok     ostatnie 12 mies.     zeszły rok     wszystko ' idx='1' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SELECT' innertext='     -okresy czasu-     dziś     ostatnie 7 dni     zeszły tydzień     ten miesiąc     zeszły miesiąc     ten rok     ostatnie 12 mies.     zeszły rok     wszystko ' type='' class='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG4AAAAUCAYAAABs4ghcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHwSURBVGhD7ZZBroIwEEA5iAuNXkRuY7r3EKbGHQvvgJcxYelCEz3GfGY6QwctfkL0f6p9ySR0WtrSxxAyYNbrNV8lYqARh6C8FHFEEhdRaNKnMiK0oyQuIpK4SOkv7mghzwyU3HwvJZgsB3vkZm+G3hcf/cUdDGR/Ju772G63cLvduOXB3G6345antziTZbW4OlZOXbnidh35pqIcyV0aMEvuW1rgHg+NsWDlfhxDLwW2pVralRNci74Akg/dV4GVfWA0e9H5cVRnURS0n8ViAdfrlbNA15jDvv1+z1nHoIqrNnkjsHVYNEYfYgbmgNcKluTyboybyx2oE+Pn7FoLZYpEP0bt5VhCSftA7uYTifwS8avwb2BVTafTRh62MUSa5DSDxOkKkKBDVGNERFhceIyX0RbUvRa2WRShxBGP1aWFj4nL5QLz+Zz2OpvNKPAac7oKhcHigg//JnHPDpoqCMVQ5ShxLNZX9rjFIefzuREm0lBoiEHi3GHJ4eOh8AG9QVzXWji2mRvnDInTn0Q9Xysvc48DFDWZTOjT2SUN6S9OfgZ++zl5sTjJP6xFYyQvY/V9qn9V/wzdrSPzPexvBJxOJ6q+Z/QXFznVxvLL8hl8jTiqshH8Qb6KrxH3aQTFIdiRYryhaYlLxEMSFyUAPwAnFt3WunRlAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Submit" sap:VirtualizedContainerService.HintSize="354,197" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" CvElementArea="823, 192, 55, 23" CvTextArea="831, 196, 38, 13" CvTextArgument="Pokat" CvType="Button" DesignTimeRectangle="824, 193, 53, 21" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl tag='INPUT' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='submit' class='' aaname='Pokaż' check:text='Pokaż' /&gt;" Guid="82df9689-c0a5-4850-ad88-c3dba32b3fdc" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADkAAAAZCAYAAACLtIazAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFHSURBVFhH7ZjRDYQgDIZZTIa5MIPvF2dwAZ3D10ucxEdH6FE5pFQ8yam5IJL8idBW+ErrgwIyGHlBDsMAdV1DWZbJCzmQx44ZEg1d18E4jskLOZDHjhkSMxAKSFXIY8cNmbJ+hGxACQGCq6igD/pz9VAVAuSzD9iO1y5I1dI1c3DxaMjamvZD9k+pE6ugCdi4DoTUalXkxsnepNYC0i9r588gpzhif1UgSZyrjnCbLM7BdCAkL9cQiITqxWyLxBibD2zjfE0lG/Ed2AXJM+ptuDgchf48FxF95SWHr/+jJ6lWbohC4uHlvOZimwdNnPbhkF9uN6TzIGNuEp+539Y8Zm+m8yA9KD1f60lt83prgnLvNrcajovViZAo42dLz/nzwxo/O6flqlqy15QoZ7Pagv4RMi3dkFdRvpBZ/BnI4h/PlUcGkABv0KZmUjf3l5cAAAAASUVORK5CYII=" InformativeScreenshot="caeb440d6ce4a3ce854d49755d2ec704.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector, Image, CV" Version="V3" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[Invoices]" DisplayName="Extract Invoice Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='!' ReferenceIdx='0' Name='!'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='nr' ReferenceIdx='1' Name='nr'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='nr Url' ReferenceIdx='2' Name='nr Url' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='data' ReferenceIdx='3' Name='data'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='dni' ReferenceIdx='4' Name='dni'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator='.' ThousandsSeparator=',' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='termin' ReferenceIdx='5' Name='termin'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='firma' ReferenceIdx='6' Name='firma'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='rodzaj' ReferenceIdx='7' Name='rodzaj'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='brutto' ReferenceIdx='8' Name='brutto'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='zapłacono' ReferenceIdx='9' Name='zapłacono' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='pozostało' ReferenceIdx='10' Name='pozostało' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='należn' ReferenceIdx='11' Name='należn'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='forma' ReferenceIdx='12' Name='forma'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='netto' ReferenceIdx='13' Name='netto'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='vat' ReferenceIdx='14' Name='vat'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='wpłynęło' ReferenceIdx='15' Name='wpłynęło'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='region' ReferenceIdx='16' Name='region'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='termin pr.' ReferenceIdx='17' Name='termin pr.'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='miasto wysylki' ReferenceIdx='18' Name='miasto wysylki' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='!' attr='fulltext' /&gt;&lt;column name='nr' attr='fulltext' name2='nr Url' attr2='href' /&gt;&lt;column name='data' attr='fulltext' /&gt;&lt;column name='dni' attr='fulltext' /&gt;&lt;column name='termin' attr='fulltext' /&gt;&lt;column name='firma' attr='fulltext' /&gt;&lt;column name='rodzaj' attr='fulltext' /&gt;&lt;column name='brutto' attr='fulltext' /&gt;&lt;column name='zapłacono' attr='fulltext' /&gt;&lt;column name='pozostało' attr='fulltext' /&gt;&lt;column name='należn' attr='fulltext' /&gt;&lt;column name='forma' attr='fulltext' /&gt;&lt;column name='netto' attr='fulltext' /&gt;&lt;column name='vat' attr='fulltext' /&gt;&lt;column name='wpłynęło' attr='fulltext' /&gt;&lt;column name='region' attr='fulltext' /&gt;&lt;column name='termin pr.' attr='fulltext' /&gt;&lt;column name='miasto wysylki' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V3">
+              <uix:NExtractData.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="20, -2444, 1185, 11506" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl aaname='! nr data dni termin firma rodzaj brutto zapłacono pozostało nal*' tag='TABLE' /&gt;" Guid="05371f56-ce00-4264-8560-3fa51d638100" InformativeScreenshot="80904313643e44bcfd0a768f11d670d2.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
+              </uix:NExtractData.Target>
+            </uix:NExtractData>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 1294, 1392" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAh4SURBVFhHpdd7UFNnGgbwWBURCAQVtu0/OzudcXVFVEBATdWKLVvkIuEmWAoUtOttqsICIiqKiEQBoV4xut1O1d11lW4RvFTSQ0ggECABkhAIIF4QpXZTt1Pcdbt59j050QoBq+07804YhuT5fe/58p0D70XLi3kQM69mgJlb02+aU9OHObIeeMqMmCM3YI5Ci3n1Gmr1kE+jsptaskhd/WvrW39Z+TDfSnwY05BXzQNQOPVtsIDZsm7qLnjWdsBTrsWculYCNMOnQQn/phoINdfNS9oudy/TVgitH/Vy5cs8Evoy35t8mIfwrvkGXjWDFH6Hwm/Cs+YGZtewgA54yPSYLW+Dp6IVc+ub4KVUYUEzC7iGpW0VWK67iKCuM+qwXsmLT8SPeZTvywyZLeHMP+HFDGJezT0C3OVWT+EelnAO4FHbRgg1AVTwbqiHb5MMC1qqLYDAjnN413AGK3tPDMX158dYI8YuP+Y/Elo55jPfgQXQ+C2rn0fh7AQsq6fRz2KDLa2jn1lAK02hGfOUjfBVsRO4agWcRVh3GQsAAcyr+/PGRvgzj/MJAFo99fcU/i1N4AEB7lsAnjLu2nvIDJbVs8GzZO34nawVs2pZQAvtBRXtAxmE6itY1n4RgfrPCHAC0TcLQeFIGNhhTh5Mt90X/sx/hRRu9mP+bQHMZ/5F/ZCC2Wt/l177afUsoJNCtU+DR/ZseTMhGmgjfonFmgoEaM8juOsEIm4UIe52LpLuZ2HN16lD1tgfy495bKKm8EdWwHfwkpow84tbmFnRS92DGZe6CGCkcP2o4Wx7yFtoLyixsPkKAf6BgHYWUIaIXjFib+UhaSAVawY3YaMpRWKNtqxewoY/Wf30c31w230NLqnlEGRWwjXrCqZkVVFfwtSMcryaX4U3/t48BoD9KjLwbZRiUUsllmvPIMhQhugbuYi9mY3E/i1IubceGx7Em63xFsAQXX94fP4NBFnXwM+4BudsBi67FBDk1sM1rwFT8pSYmleHabkyTNstxbSdl/FqbhWmV2qGAWbLVZhbJ4e/6hIWt/wNAa2fYEVHCUI7xVjVtw0JdzYh+e5a/OF+PDY9iJRQ+A8xBMD0M/1wSL0Kp+214Oc0wnmvBi772yEQ6+B6UIcp1FMLdXArbIPbgRa47a+HW64UbtkVeOMCNw2P2hY6lBQEUGB+fRUWNV/EMs0pBHcUQ2TMQUxvBuJubMYH/Wvx4b14rB+MHuAtqn6kmXn+a0xOk8IhWwnH3Wrw83RwLjDARdwJQWEXXIuMmHLIiKnU00qoDxngXqyD+4EmuOfJ4LajEr+tUtKpKMdcuRReisvwbziPN5s+xTL1MQTr8hBu2I5o4xa835eCpNuJSOmPxYd3ReB5Vzz8H39nI+yzVXDY3QbHvA445XeCX2CE8wEjXA52Q1DUDdfiHkL0YGpJDyE68XppR/evSg0F7kXqdPd9CuVrBdfhwbCA6wSoxALlZ3hTdQpvNR9BiC4XIkMWAbZide9aJN5MRPKtKA4w4y+DmLS9Gfa72jA5Vw+HvE447qPe3zUcUcghBNl1+M2Wz0us2+dpuefVJk4vr4a3/AJ8FefgX/dnLFaVIaBJjOC2TIRqMxFp2Ij3ehKR0LfaAlhzJxw8t+Iu2GW3YlKOHva5Bkzea7AgHKwIpwKCiDmESzoDxyCx0pppUzM+ufrYW3aWAGexsP4kFisPYplKjCBNBkLb0yDSb0CsIQ7x3VFIuiFCys1Q8FwPGjFxpw52u/SYtNsA+z0cYvJIRKaCwgvgFFaabs2zKZ+/Xm33ln0Kv9ojWKQoxJIGMd5pzECgKg0hmnUIb09GlC4e7xkj8b4xBCl9gWbehGwtJhBg4q4O2OV0EKLDgrB/FrFXD8fQIgovAV90PNWaZ1PejCTfR3aKAIcJcABL6vYgoD6NABsQ0pIIUXsCYvTRNAUR4jt/j0RjQDdv/HYC7NATQm+LYC8Ji9hQBccQAoiOgR95ssCaZ1M+X5UMzK85goW1+6n34S1FKpYrUxHYuA4rGhMQpo6HSBOFWH0IYnXvIt4QIOS9sl2H8dm6URGTrAiHiKNwWnmYDQc/+nS3NW9YeUk/FnpLi+k0FcOfyYWwdieWyrciQLEegfUJHKBJBFFLKCI1QYjTBzKWN76SpTONhbBjJ5HVDIeQQlr9cfCjTrEAMz/qtM3DhXe1uNxbWghf6R4sZHZCyGzF0tqNCJAn4526BAQ1rEKoKhwidQgL4MLZGrdNxxACTxDjR04inQ6n0ENwiihjw6n/RJDTA9a3Dyvf6hy1nzTHvECaToBUAqwjwAd4Wx6HoPpwBDeEm8JUoZutf87VuG3aGELABkE9kb4Z9usq4RhWah0/hXMAdhrl1o+wKaF002Yh85FkCZPMBMhWM2/XrpIEyiPGfjYkxBCLGPcsIptD2KXVw3Hlx6MB4Bx5ctT98PKVqc0nBCw9AjExXUUTKIHT6AA4R5QNOYtODB/rc8p1RWGMa9DBUR5QM7Um3ggEB6EzIPww7YETFP50DzwLAAGojw+5hB8rd1l51OaZTxByKEYQXCwRBBeZCAACjDK5TK2Q2jwaYlLKF3AKP0qhEg4xOgAEAAGoj8Al7DAEoaXUJSAACEBdBAKYCTDGfqBLQY2RiPEZLXCMOEaXgb4J7FfxlwHyrWljVKZWYoOgtlt3jaZwhNuMkSziZwF+fA58bnGTMLOQZxH2SRe4S8GeCZESAlD4iwHMBPiJlY8sbk+YRiIsk6AAuilROBvMhTvTfWIMgIkAP+//Q0tx06BzgoVwiPHpLZicdBF8uj8400ScKZR95YKp6fcEGCLAS676eZXJnphahhCmJ6fmhKw22P2xge6WX8Lxo6/gmsr88Fpa9cPXU86PecseXjze/wGADjhbeB2rcwAAAABJRU5ErkJggg==" InformativeScreenshot="77e3e8834ef4cfd090422b315c7e1415.jpg" Selector="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" Title="Lista faktur" Url="https://83.12.182.129:16934/zestawienie_faktur.php" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <ui:RemoveDataRow Row="{x:Null}" DataTable="[Invoices]" DisplayName="Delete Last Row From Invoices" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Invoices.Rows.Count - 1]" />
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Out Rows With Empty Cells" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="452,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["należn"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="Or" Operator="EMPTY">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[Invoices.Rows.Count.ToString]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[ListOfDates(2).Month.ToString]" />
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="452,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["forma"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["prze*"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[Invoices.Rows.Count.ToString]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="452,385" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,198" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Name="strRow" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[CurrentRow(&quot;data&quot;).ToString]" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
   </Sequence>
 </Activity>
