@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EndDate="[new DateOnly(2024, 03, 31)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ueabf="clr-namespace:UiPath.Excel.Activities.Business.Filter;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EndDate="[new DateOnly(2024, 03, 31)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="EndDate" Type="InArgument(s:DateOnly)" />
   </x:Members>
@@ -6,7 +6,7 @@
     <x:Null />
   </VisualBasic.Settings>
   <sap2010:Annotation.AnnotationText>UPTF00000088eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8VmVyc2lvbj5rX19CYWNraW5nRmllbGQiOjF9</sap2010:Annotation.AnnotationText>
-  <sap:VirtualizedContainerService.HintSize>872,6531</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>678,11449</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -131,7 +131,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="882,6466" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="688,11384" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateOnly" Name="BorderDate" />
       <Variable x:TypeArguments="scg:List(s:DateOnly)" Default="[new List(Of DateOnly)]" Name="ListOfDates" />
@@ -140,13 +140,19 @@
       <Variable x:TypeArguments="s:DateOnly" Name="EndCopyingDate" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="Invoices" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="TempInvoices" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Mrozowski" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Dziedziurko" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Kukowka" />
+      <Variable x:TypeArguments="x:Double" Name="MrozowskiSum" />
+      <Variable x:TypeArguments="x:Double" Name="DziedziurkoSum" />
+      <Variable x:TypeArguments="x:Double" Name="KukowkaSum" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,340" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="626,340" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -162,7 +168,7 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[BorderDate]</OutArgument>
       </Assign.To>
@@ -170,10 +176,10 @@
         <InArgument x:TypeArguments="s:DateOnly">[new DateOnly(EndDate.Year, EndDate.Month, 1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
-    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="626,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="626,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="626,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
+    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[StartCopyingDate]</OutArgument>
       </Assign.To>
@@ -181,7 +187,7 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddMonths(-3)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[EndCopyingDate]</OutArgument>
       </Assign.To>
@@ -189,7 +195,7 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddDays(-1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Server Website" sap:VirtualizedContainerService.HintSize="820,65" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Always" ScopeGuid="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Server Website" sap:VirtualizedContainerService.HintSize="626,65" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Always" ScopeGuid="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -265,7 +271,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
-    <ui:RemoveDataRow Row="{x:Null}" DataTable="[Invoices]" DisplayName="Delete Last Row From Invoices" sap:VirtualizedContainerService.HintSize="820,65" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Invoices.Rows.Count - 1]">
+    <ui:RemoveDataRow Row="{x:Null}" DataTable="[Invoices]" DisplayName="Delete Last Row From Invoices" sap:VirtualizedContainerService.HintSize="626,65" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Invoices.Rows.Count - 1]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -273,7 +279,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RemoveDataRow>
-    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Out Rows With Empty Cells" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="820,65" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Out Rows With Empty Cells" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="626,65" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -300,7 +306,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:FilterDataTable>
-    <Assign DisplayName="Clone Invoices To Temp Table" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <Assign DisplayName="Clone Invoices To Temp Table" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[TempInvoices]</OutArgument>
       </Assign.To>
@@ -308,7 +314,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[Invoices.Clone()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Invoices" sap:VirtualizedContainerService.HintSize="820,794" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Invoices" sap:VirtualizedContainerService.HintSize="626,794" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
@@ -346,7 +352,7 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <Assign DisplayName="Copy Filtered Data Back To Main Table" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="Copy Filtered Data Back To Main Table" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
       </Assign.To>
@@ -354,8 +360,8 @@
         <InArgument x:TypeArguments="sd:DataTable">[TempInvoices.Copy()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ClearDataTable DataTable="[TempInvoices]" DisplayName="Clear Temp Table" sap:VirtualizedContainerService.HintSize="820,120" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Filtered Invoices" sap:VirtualizedContainerService.HintSize="820,794" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+    <ui:ClearDataTable DataTable="[TempInvoices]" DisplayName="Clear Temp Table" sap:VirtualizedContainerService.HintSize="626,120" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Filtered Invoices" sap:VirtualizedContainerService.HintSize="626,794" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
@@ -393,7 +399,7 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <Assign DisplayName="Copy Data Back To Main Table Again" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="Copy Data Back To Main Table Again" sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
       </Assign.To>
@@ -401,7 +407,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[TempInvoices.Copy()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,310" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="626,310" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_16">
           <sap:WorkflowViewStateService.ViewState>
@@ -422,7 +428,7 @@ Select r).CopyToDataTable]</InArgument>
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,309" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="626,309" sap2010:WorkflowViewState.IdRef="CommentOut_4">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,190" sap2010:WorkflowViewState.IdRef="Sequence_24">
           <sap:WorkflowViewStateService.ViewState>
@@ -441,97 +447,164 @@ Select r).CopyToDataTable]</InArgument>
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="820,2265" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_3">
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="626,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_3" OutputDataTable="[Mrozowski]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Wielkopolska"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Pomorze"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="626,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_5" OutputDataTable="[Dziedziurko]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Małopolska"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Mazowsze Wschód"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="626,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_4" OutputDataTable="[Kukowka]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Mazowsze Zachód"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="EQ">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["region"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["Śląsk"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <Assign sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[MrozowskiSum]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(Mrozowski.Compute("SUM(netto)", "").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_11">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[DziedziurkoSum]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(Dziedziurko.Compute("SUM(netto)", "").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="626,122" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[KukowkaSum]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(Kukowka.Compute("SUM(netto)", "").ToString)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="626,6214" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_3">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="786,2155" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="592,6104" sap2010:WorkflowViewState.IdRef="Sequence_10">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Result Excel File" sap:VirtualizedContainerService.HintSize="724,2070" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" WorkbookPath="[EndDate.Year.ToString + &quot;-&quot; + EndDate.Month.ToString + &quot;-prowizja.xlsx&quot;]">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Result Excel File" sap:VirtualizedContainerService.HintSize="530,6019" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" WorkbookPath="[EndDate.Year.ToString + &quot;-&quot; + EndDate.Month.ToString + &quot;-prowizja.xlsx&quot;]">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="690,1778" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,5727" sap2010:WorkflowViewState.IdRef="Sequence_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Employee" sap:VirtualizedContainerService.HintSize="628,1532" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ListOfEmployees]">
-                      <ui:ForEach.Body>
-                        <ActivityAction x:TypeArguments="x:String">
-                          <ActivityAction.Argument>
-                            <DelegateInArgument x:TypeArguments="x:String" Name="currentEmployee" />
-                          </ActivityAction.Argument>
-                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="594,1328" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ueab:InsertSheetX DisplayName="Insert Sheet With Employee Name" sap:VirtualizedContainerService.HintSize="532,226" sap2010:WorkflowViewState.IdRef="InsertSheetX_1" Name="[currentEmployee]" Workbook="[Excel]" />
-                            <ueab:WriteRangeX Destination="[Excel.Sheet(currentEmployee)]" DisplayName="Write Specific Data Table to Excel" sap:VirtualizedContainerService.HintSize="532,199" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[Invoices]" />
-                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,439" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-                              <ui:CommentOut.Body>
-                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,320" sap2010:WorkflowViewState.IdRef="Sequence_25">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ueab:CreateTableX OutTableName="{x:Null}" DisplayName="Format as Current Employee Table" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,235" sap2010:WorkflowViewState.IdRef="CreateTableX_2" Range="[Excel.Sheet(currentEmployee)]" TableName="[currentEmployee]" />
-                                </Sequence>
-                              </ui:CommentOut.Body>
-                            </ui:CommentOut>
-                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,379" sap2010:WorkflowViewState.IdRef="CommentOut_6">
-                              <ui:CommentOut.Body>
-                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,277" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <ueab:FilterX ClearFilter="False" ColumnName="wpłynęło" DisplayName="Filter" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,192" sap2010:WorkflowViewState.IdRef="FilterX_2" Range="[Excel.Table(currentEmployee)]">
-                                    <ueab:FilterX.FilterArgument>
-                                      <ueabf:FilterArgument Mode="Advanced">
-                                        <ueabf:FilterArgument.AdvancedFiltersArgument>
-                                          <ueabf:AdvancedFilterArgument LogicalOperator="And">
-                                            <ueabf:AdvancedFilterArgument.Condition1>
-                                              <ueabf:AdvancedFilterCondition Operator="GTE" Value="[BorderDate.ToString(&quot;yyyy-MM-dd&quot;)]" />
-                                            </ueabf:AdvancedFilterArgument.Condition1>
-                                            <ueabf:AdvancedFilterArgument.Condition2>
-                                              <ueabf:AdvancedFilterCondition Value="{x:Null}" Operator="NONE" />
-                                            </ueabf:AdvancedFilterArgument.Condition2>
-                                          </ueabf:AdvancedFilterArgument>
-                                        </ueabf:FilterArgument.AdvancedFiltersArgument>
-                                        <ueabf:FilterArgument.BasicFiltersArgument>
-                                          <ueabf:BasicFilterArgument>
-                                            <ueabf:BasicFilterArgument.BasicFilters>
-                                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
-                                                <x:Null />
-                                              </scg:List>
-                                            </ueabf:BasicFilterArgument.BasicFilters>
-                                          </ueabf:BasicFilterArgument>
-                                        </ueabf:FilterArgument.BasicFiltersArgument>
-                                      </ueabf:FilterArgument>
-                                    </ueab:FilterX.FilterArgument>
-                                  </ueab:FilterX>
-                                </Sequence>
-                              </ui:CommentOut.Body>
-                            </ui:CommentOut>
-                          </Sequence>
-                        </ActivityAction>
-                      </ui:ForEach.Body>
-                    </ui:ForEach>
-                    <ueab:RenameSheetX DisplayName="Rename First Sheet" From="[Excel.Sheet(&quot;Arkusz1&quot;)]" sap:VirtualizedContainerService.HintSize="628,161" sap2010:WorkflowViewState.IdRef="RenameSheetX_1" To="Podsumowanie" />
+                    <ueab:InsertSheetX DisplayName="Insert Sheet With Employee Name" sap:VirtualizedContainerService.HintSize="434,226" sap2010:WorkflowViewState.IdRef="InsertSheetX_1" Name="Mrozowski" Workbook="[Excel]" />
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Mrozowski&quot;).Range(&quot;A3:O3&quot;)]" DisplayName="Write Specific Data Table to Excel" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[Mrozowski]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Mrozowski&quot;).Cell(&quot;G1&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_1" Value="[&quot;Mrozowski&quot;]" />
+                    <ueab:InsertSheetX DisplayName="Insert Sheet With Employee Name" sap:VirtualizedContainerService.HintSize="434,226" sap2010:WorkflowViewState.IdRef="InsertSheetX_3" Name="Dziędziurko" Workbook="[Excel]" />
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Dziędziurko&quot;).Range(&quot;A3:O3&quot;)]" DisplayName="Write Specific Data Table to Excel" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteRangeX_3" IgnoreEmptySource="False" Source="[Dziedziurko]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Dziędziurko&quot;).Cell(&quot;G1&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_2" Value="[&quot;Dziędziurko&quot;]" />
+                    <ueab:InsertSheetX DisplayName="Insert Sheet With Employee Name" sap:VirtualizedContainerService.HintSize="434,226" sap2010:WorkflowViewState.IdRef="InsertSheetX_2" Name="Kukowka" Workbook="[Excel]" />
+                    <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Kukowka&quot;).Range(&quot;A3:O3&quot;)]" DisplayName="Write Specific Data Table to Excel" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteRangeX_4" IgnoreEmptySource="False" Source="[Kukowka]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Kukowka&quot;).Cell(&quot;G1&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_3" Value="[&quot;Kukowka&quot;]" />
+                    <ueab:RenameSheetX DisplayName="Rename First Sheet" From="[Excel.Sheet(&quot;Arkusz1&quot;)]" sap:VirtualizedContainerService.HintSize="434,178" sap2010:WorkflowViewState.IdRef="RenameSheetX_1" To="Podsumowanie" />
+                    <ueab:AutoFitX Columns="True" DisplayName="Autofit Range" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="AutoFitX_1" Range="[Excel.Sheet(&quot;Mrozowski&quot;)]" Rows="True" />
+                    <ueab:AutoFitX Columns="True" DisplayName="Autofit Range" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="AutoFitX_2" Range="[Excel.Sheet(&quot;Dziędziurko&quot;)]" Rows="True" />
+                    <ueab:AutoFitX Columns="True" DisplayName="Autofit Range" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="AutoFitX_3" Range="[Excel.Sheet(&quot;Kukowka&quot;)]" Rows="True" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E9&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_4" Value="[&quot;PROWIZJA&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E12&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_5" Value="[&quot;Stan na &quot; + EndDate.ToString(&quot;dd.MM.yyyy&quot;)]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;D16&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_6" Value="[&quot;Mrozowski:&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E16&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_9" Value="[MrozowskiSum]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;F16&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_15" Value="[Math.Round(MrozowskiSum * 0.015, 2)]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;D17&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_7" Value="[&quot;Dziędziurko:&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E17&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_10" Value="[DziedziurkoSum]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;F17&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_16" Value="[Math.Round(DziedziurkoSum * 0.015, 2)]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;D18&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_8" Value="[&quot;Kukowka:&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E18&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_11" Value="[KukowkaSum]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;F18&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_17" Value="[Math.Round(KukowkaSum * 0.015, 2)]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;D19&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_12" Value="[&quot;SUMA:&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;E19&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_13" Value="[&quot;=SUM(E16:E18)&quot;]" />
+                    <ueab:WriteCellX Cell="[Excel.Sheet(&quot;Podsumowanie&quot;).Cell(&quot;F19&quot;)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="434,199" sap2010:WorkflowViewState.IdRef="WriteCellX_14" Value="[&quot;=SUM(F16:F18)&quot;]" />
+                    <ueab:AutoFitX Columns="True" DisplayName="Autofit Range" sap:VirtualizedContainerService.HintSize="434,156" sap2010:WorkflowViewState.IdRef="AutoFitX_4" Range="[Excel.Sheet(&quot;Podsumowanie&quot;)]" Rows="True" />
+                    <ueab:SaveAsPdfX EndPage="{x:Null}" StartPage="{x:Null}" DestinationPdfPath="[EndDate.Year.ToString + &quot;-&quot; + EndDate.Month.ToString + &quot;-prowizja.pdf&quot;]" DisplayName="Save Excel File As PDF" sap:VirtualizedContainerService.HintSize="434,182" sap2010:WorkflowViewState.IdRef="SaveAsPdfX_1" SaveQuality="StandardQuality" Workbook="[Excel]" />
                   </Sequence>
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
