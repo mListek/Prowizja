@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EndDate="[new DateOnly(2024, 03, 31)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.EndDate="[new DateOnly(2024, 03, 31)]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:uasa="clr-namespace:UiPath.Activities.System.Arrays;assembly=UiPath.System.Activities" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ueabf="clr-namespace:UiPath.Excel.Activities.Business.Filter;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="EndDate" Type="InArgument(s:DateOnly)" />
   </x:Members>
@@ -6,7 +6,7 @@
     <x:Null />
   </VisualBasic.Settings>
   <sap2010:Annotation.AnnotationText>UPTF00000088eyI8SGVscExpbms+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8SW5pdGlhbFRvb2x0aXA+a19fQmFja2luZ0ZpZWxkIjpudWxsLCI8VmVyc2lvbj5rX19CYWNraW5nRmllbGQiOjF9</sap2010:Annotation.AnnotationText>
-  <sap:VirtualizedContainerService.HintSize>597,4414</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>872,9091</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -55,6 +55,12 @@
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business.Filter</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.Excel.Model</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>System.Globalization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -122,32 +128,25 @@
       <AssemblyReference>System.Linq.Parallel</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="514,4349" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="882,9026" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:DateOnly" Name="BorderDate" />
-      <Variable x:TypeArguments="scg:List(s:DateOnly)" Name="ListOfDates">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(s:DateOnly)" ExpressionText="new List(Of DateOnly)" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="scg:List(x:String)" Name="ListOfEmployees">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="new List(Of String)({&quot;Dziędziurko&quot;, &quot;Mrozowski&quot;, &quot;Kukowka&quot;})" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="scg:List(s:DateOnly)" Default="[new List(Of DateOnly)]" Name="ListOfDates" />
+      <Variable x:TypeArguments="scg:List(x:String)" Default="[new List(Of String)({&quot;Dziędziurko&quot;, &quot;Mrozowski&quot;, &quot;Kukowka&quot;})]" Name="ListOfEmployees" />
       <Variable x:TypeArguments="s:DateOnly" Name="StartCopyingDate" />
       <Variable x:TypeArguments="s:DateOnly" Name="EndCopyingDate" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="Invoices" />
-      <Variable x:TypeArguments="x:String" Name="strInvoice" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="TempInvoices" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,340" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,340" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,221" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <sap:WorkflowViewStateService.ViewState>
@@ -157,15 +156,13 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetDateFromTheUser" sap:VirtualizedContainerService.HintSize="354,136" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="GetDateFromTheUser.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="s:DateOnly" x:Key="EndDate">
-                <VisualBasicReference x:TypeArguments="s:DateOnly" ExpressionText="EndDate" />
-              </OutArgument>
+              <OutArgument x:TypeArguments="s:DateOnly" x:Key="EndDate">[EndDate]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Create Border Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[BorderDate]</OutArgument>
       </Assign.To>
@@ -173,10 +170,10 @@
         <InArgument x:TypeArguments="s:DateOnly">[new DateOnly(EndDate.Year, EndDate.Month, 1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
-    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
-    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Third Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_2" ItemToAppend="[BorderDate.AddMonths(-3)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Second Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_3" ItemToAppend="[BorderDate.AddMonths(-2)]" List="[ListOfDates]" />
+    <uasa:AppendItemToList x:TypeArguments="s:DateOnly" ItemIndex="{x:Null}" DisplayName="Add Last Month" sap:VirtualizedContainerService.HintSize="820,173" sap2010:WorkflowViewState.IdRef="AppendItemToList`1_4" ItemToAppend="[BorderDate.AddMonths(-1)]" List="[ListOfDates]" />
+    <Assign DisplayName="Assign Beginning Copy Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[StartCopyingDate]</OutArgument>
       </Assign.To>
@@ -184,7 +181,7 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddMonths(-3)]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="452,122" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign End Copy Date" sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateOnly">[EndCopyingDate]</OutArgument>
       </Assign.To>
@@ -192,7 +189,7 @@
         <InArgument x:TypeArguments="s:DateOnly">[BorderDate.AddDays(-1)]</InArgument>
       </Assign.Value>
     </Assign>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Server Website" sap:VirtualizedContainerService.HintSize="452,1633" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Always" ScopeGuid="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Edge: Server Website" sap:VirtualizedContainerService.HintSize="820,1633" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="Simulate" OpenMode="Always" ScopeGuid="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -214,7 +211,7 @@
               <uix:NClick.Target>
                 <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" DesignTimeRectangle="24, 249, 13, 13" DesignTimeScaleFactor="1" ElementType="CheckBox" FullSelectorArgument="&lt;webctrl name='wdetal' tag='INPUT' type='checkbox' /&gt;" FuzzySelectorArgument="&lt;webctrl name='wdetal' tag='INPUT' type='checkbox' class='' aaname='' /&gt;" Guid="8e6ce0b4-cf46-4b6b-a628-4330a422fdbe" InformativeScreenshot="806d0b7f16e9d0ac850233384e8dcbbb.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                       <uix:Target CvElementArea="20, 249, 108, 16" CvTextArea="42, 252, 72, 12" CvTextArgument="pokaz faktury" CvType="Button" DesignTimeRectangle="43, 252, 71, 12" FullSelectorArgument="&lt;webctrl aaname='pokaż faktury' innertext='pokaż faktury' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='pokaż faktury' innertext='pokaż faktury' tag='B' type='' class='' check:text='pokaż faktury' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEsAAAAQCAYAAABeB4LeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGESURBVFhH7ZPtTcRADETTGuXQCsXQDAWFPHRvGVk+sskPJMRmZK13/TFj627b1zf9rWVd+Lbt2NfCJML9PXwcBvP74/5XEO49vDzsCs6WxTvxmZxn8auaZhDuPdxZ1hleDzvr+dOyZurvYDiSQ8RZhbwd5jsmclmcxvz1aPaqfepQHU9qMj+XpU9trfeOHoBPP6B23jyNAevHXUdCkyXJGCeQJH0HUhRvEhEzX9g/xYjMlxvk39d3++SQWW/82bK4C3OB/a0DwzHIWe912GwkIZaCgeRY1js01qHyAfMx+NWg5VBXltXp4mw16ORy6r0WGqMp7/ieKcqaWs/d3h0y32HJdRh8NchLjejqU5e55KQuwN0azsRwJLeRBRnjBElSfeodSrLMqTwdclj8Tkfnu5Cszzx1yZ26hHNnPzEcmyoO401kE0wkYQrLPsStyXetisphHRCzD1qSC6SO1Ar05eYEWSPkq+9gOJX8v8JldXsYzlrW9y+v+1V9YX3T31rW9Lfvn8C4yaV3vg1/AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
                     </scg:List>
                   </uix:TargetAnchorable.Anchors>
@@ -225,7 +222,7 @@
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" CvTextArea="49, 166, 80, 11" CvTextArgument="DateOnly.Now" CvType="Text" DesignTimeRectangle="47, 161, 116, 21" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='date' tag='INPUT' class='' aaname='' /&gt;" Guid="7330d50a-8491-4fa1-a68d-7fe5e444c62e" InformativeScreenshot="111eb0532ef1ebc4d37a5a1f695fff9b.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
                       <uix:Target CvTextArea="23, 172, 19, 11" CvTextArgument="Od:" CvType="Text" DesignTimeRectangle="24, 172, 18, 12" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl colName='okres wystawienia' innertext='Od:' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl colName='okres wystawienia' innertext='Od:' tag='P' type='' class='' aaname='Od:' check:text='Od:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhP7ZLbDYAgDEW7mmxD2MSwCi5DwjpXLRWwPmKI/nkSPoD2QCmEj/jFhYM4WALRNgx8lA3N5ECDR5KpZidmaRu8Jl/JH4ujhzmR8GE25AnH5GqcbcTrujqkivl2DqKolJsl+IFgxpx+qE7xXKwreu0pusUL983rfQohjYabc/rdupr3Mr9YAGYukPgnLQAJmQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image, CV" />
                       <uix:Target CvTextArea="44, 145, 99, 11" CvTextArgument="okres wystawienia" CvType="Text" DesignTimeRectangle="23, 143, 141, 14" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' tag='TH' type='' class='f' check:text='okres wystawienia' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJEAAAASCAYAAABb/DxVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIISURBVGhD7ZRRTsQwDET3anxzEq7CYeAwHKjsk/pgZKWgbZXCgj2y4jr2OHG8e1laWg5KD1HLYfkYokujcSOUHqLGbig9RI3dUH52iF6uelnXe8RD2HthD97W71txNP8AlB6ivXi+Kmf/x1DOGyIarvIAIIdImz1tfunu80vDVoWx6ugXid+aT+u3cdiP66ovB0RbBaOa8qL+QyWP5ycu9+SydvJ45sytezXfnhk/Eco5Q8TFbKyXZtW2oV46/cIcQJx8yc06alyNr/V9JOslD/60jfHMQB4gF760jalnzTPA6f6Ix3Ow8g228tM/Ccr8IcpmiNpA1QvrN6fGqcCGpq8i+Vitj9p0v+t52ZfbWJBDJIxDMz9rueeqTd2spVKnnmk0wPbOWFX/BCi/Y4hsHj6g35z6XVEbNwJ+HxIeVpQHAdYYDYd7KDkg47SJq/dlz1rW5Rzmyk2ecRUjzlG+vNjpnwRl/hCBbI6XYx3Z2QBWwbdD5kNUezQAwgaz+ihoNlmffPrgBfi9R9aSG9Sz11p5joxnT07s9Msh59YQZZ+TaxKUc4YIcCHVR7EBNscmVD/QpwobrGZOonJmw4UP/FVdHyX9r2HDyeodQdaq5/BbXvOTwzuaszVE2qg85kyAct4Q3QPyn6bxLZQeIpD/ZhN/uX8NSg9RYzeUT6ulZaf0ELUclGV5B2WLGncsMCR7AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
                     </scg:List>
@@ -237,7 +234,7 @@
               <uix:NTypeInto.Target>
                 <uix:TargetAnchorable BrowserURL="https://83.12.182.129:16934/zestawienie_faktur.php" CvTextArea="50, 135, 78, 11" CvTextArgument="22.03.2024" CvType="Text" DesignTimeRectangle="47, 129, 116, 22" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='dDo' tableRow='2' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl name='dDo' type='date' tag='INPUT' class='' aaname='' /&gt;" Guid="30a45448-d015-46f2-9432-c6d465f8a817" InformativeScreenshot="48238df8b8a3055d0efa35da18b834a1.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
                   <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
                       <uix:Target CvTextArea="44, 92, 99, 11" CvTextArgument="okres wystawienia" CvType="Text" DesignTimeRectangle="23, 90, 141, 14" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl aaname='okres wystawienia' colName='okres wystawienia' innertext='okres wystawienia' tag='TH' type='' class='f' check:text='okres wystawienia' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJEAAAASCAYAAABb/DxVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIISURBVGhD7ZRRTsQwDET3anxzEq7CYeAwHKjsk/pgZKWgbZXCgj2y4jr2OHG8e1laWg5KD1HLYfkYokujcSOUHqLGbig9RI3dUH52iF6uelnXe8RD2HthD97W71txNP8AlB6ivXi+Kmf/x1DOGyIarvIAIIdImz1tfunu80vDVoWx6ugXid+aT+u3cdiP66ovB0RbBaOa8qL+QyWP5ycu9+SydvJ45sytezXfnhk/Eco5Q8TFbKyXZtW2oV46/cIcQJx8yc06alyNr/V9JOslD/60jfHMQB4gF760jalnzTPA6f6Ix3Ow8g228tM/Ccr8IcpmiNpA1QvrN6fGqcCGpq8i+Vitj9p0v+t52ZfbWJBDJIxDMz9rueeqTd2spVKnnmk0wPbOWFX/BCi/Y4hsHj6g35z6XVEbNwJ+HxIeVpQHAdYYDYd7KDkg47SJq/dlz1rW5Rzmyk2ecRUjzlG+vNjpnwRl/hCBbI6XYx3Z2QBWwbdD5kNUezQAwgaz+ihoNlmffPrgBfi9R9aSG9Sz11p5joxnT07s9Msh59YQZZ+TaxKUc4YIcCHVR7EBNscmVD/QpwobrGZOonJmw4UP/FVdHyX9r2HDyeodQdaq5/BbXvOTwzuaszVE2qg85kyAct4Q3QPyn6bxLZQeIpD/ZhN/uX8NSg9RYzeUT6ulZaf0ELUclGV5B2WLGncsMCR7AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
                       <uix:Target CvElementArea="46, 150, 109, 18" CvType="InputBox" DesignTimeRectangle="47, 151, 106, 16" ElementType="DropDown" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SELECT' innertext='     -okresy czasu-     dziś     ostatnie 7 dni     zeszły tydzień     ten miesiąc     zeszły miesiąc     ten rok     ostatnie 12 mies.     zeszły rok     wszystko ' idx='1' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SELECT' innertext='     -okresy czasu-     dziś     ostatnie 7 dni     zeszły tydzień     ten miesiąc     zeszły miesiąc     ten rok     ostatnie 12 mies.     zeszły rok     wszystko ' type='' class='' aaname='' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG4AAAAUCAYAAABs4ghcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHwSURBVGhD7ZZBroIwEEA5iAuNXkRuY7r3EKbGHQvvgJcxYelCEz3GfGY6QwctfkL0f6p9ySR0WtrSxxAyYNbrNV8lYqARh6C8FHFEEhdRaNKnMiK0oyQuIpK4SOkv7mghzwyU3HwvJZgsB3vkZm+G3hcf/cUdDGR/Ju772G63cLvduOXB3G6345antziTZbW4OlZOXbnidh35pqIcyV0aMEvuW1rgHg+NsWDlfhxDLwW2pVralRNci74Akg/dV4GVfWA0e9H5cVRnURS0n8ViAdfrlbNA15jDvv1+z1nHoIqrNnkjsHVYNEYfYgbmgNcKluTyboybyx2oE+Pn7FoLZYpEP0bt5VhCSftA7uYTifwS8avwb2BVTafTRh62MUSa5DSDxOkKkKBDVGNERFhceIyX0RbUvRa2WRShxBGP1aWFj4nL5QLz+Zz2OpvNKPAac7oKhcHigg//JnHPDpoqCMVQ5ShxLNZX9rjFIefzuREm0lBoiEHi3GHJ4eOh8AG9QVzXWji2mRvnDInTn0Q9Xysvc48DFDWZTOjT2SUN6S9OfgZ++zl5sTjJP6xFYyQvY/V9qn9V/wzdrSPzPexvBJxOJ6q+Z/QXFznVxvLL8hl8jTiqshH8Qb6KrxH3aQTFIdiRYryhaYlLxEMSFyUAPwAnFt3WunRlAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
                     </scg:List>
@@ -252,7 +249,7 @@
             </uix:NClick>
             <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[Invoices]" DisplayName="Extract Invoice Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Table' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='!' ReferenceIdx='0' Name='!'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='nr' ReferenceIdx='1' Name='nr'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='nr Url' ReferenceIdx='2' Name='nr Url' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='data' ReferenceIdx='3' Name='data'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='dni' ReferenceIdx='4' Name='dni'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator='.' ThousandsSeparator=',' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='termin' ReferenceIdx='5' Name='termin'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='firma' ReferenceIdx='6' Name='firma'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='rodzaj' ReferenceIdx='7' Name='rodzaj'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='brutto' ReferenceIdx='8' Name='brutto'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='zapłacono' ReferenceIdx='9' Name='zapłacono' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='pozostało' ReferenceIdx='10' Name='pozostało' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='należn' ReferenceIdx='11' Name='należn'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='forma' ReferenceIdx='12' Name='forma'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='netto' ReferenceIdx='13' Name='netto'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='vat' ReferenceIdx='14' Name='vat'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='NumberColumnFormat' DecimalSeparator=',' ThousandsSeparator='' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='wpłynęło' ReferenceIdx='15' Name='wpłynęło'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='region' ReferenceIdx='16' Name='region'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='termin pr.' ReferenceIdx='17' Name='termin pr.'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='miasto wysylki' ReferenceIdx='18' Name='miasto wysylki' IsDeleted='true'&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xD;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xD;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xD;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xD;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xD;&#xA;&#x9;&lt;/Column&gt;&#xD;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest'&gt;&lt;column name='!' attr='fulltext' /&gt;&lt;column name='nr' attr='fulltext' name2='nr Url' attr2='href' /&gt;&lt;column name='data' attr='fulltext' /&gt;&lt;column name='dni' attr='fulltext' /&gt;&lt;column name='termin' attr='fulltext' /&gt;&lt;column name='firma' attr='fulltext' /&gt;&lt;column name='rodzaj' attr='fulltext' /&gt;&lt;column name='brutto' attr='fulltext' /&gt;&lt;column name='zapłacono' attr='fulltext' /&gt;&lt;column name='pozostało' attr='fulltext' /&gt;&lt;column name='należn' attr='fulltext' /&gt;&lt;column name='forma' attr='fulltext' /&gt;&lt;column name='netto' attr='fulltext' /&gt;&lt;column name='vat' attr='fulltext' /&gt;&lt;column name='wpłynęło' attr='fulltext' /&gt;&lt;column name='region' attr='fulltext' /&gt;&lt;column name='termin pr.' attr='fulltext' /&gt;&lt;column name='miasto wysylki' attr='fulltext' /&gt;&lt;/extract-table&gt;" sap:VirtualizedContainerService.HintSize="354,182" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="0" ScopeIdentifier="43acf403-f456-42d7-8da8-d762c0ef064d" Version="V3">
               <uix:NExtractData.Target>
-                <uix:TargetAnchorable DesignTimeRectangle="20, -2444, 1185, 11506" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl aaname='! nr data dni termin firma rodzaj brutto zapłacono pozostało nal*' tag='TABLE' /&gt;" Guid="05371f56-ce00-4264-8560-3fa51d638100" InformativeScreenshot="80904313643e44bcfd0a768f11d670d2.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
+                <uix:TargetAnchorable DesignTimeRectangle="20, 446, 1160, 866" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl aaname='! nr data dni termin firma rodzaj brutto zapłacono pozostało nal*' tag='TABLE' /&gt;" Guid="68763435-3618-4615-8630-ed23fc33cf3e" InformativeScreenshot="80904313643e44bcfd0a768f11d670d2.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Lista faktur' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
           </Sequence>
@@ -268,8 +265,15 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uix:NApplicationCard>
-    <ui:RemoveDataRow Row="{x:Null}" DataTable="[Invoices]" DisplayName="Delete Last Row From Invoices" sap:VirtualizedContainerService.HintSize="452,226" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Invoices.Rows.Count - 1]" />
-    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Out Rows With Empty Cells" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="452,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
+    <ui:RemoveDataRow Row="{x:Null}" DataTable="[Invoices]" DisplayName="Delete Last Row From Invoices" sap:VirtualizedContainerService.HintSize="820,65" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Invoices.Rows.Count - 1]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataRow>
+    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Out Rows With Empty Cells" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="820,65" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -289,48 +293,277 @@
           <x:Null />
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:FilterDataTable>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_14" Text="[Invoices.Rows.Count.ToString]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[ListOfDates(2).Month.ToString]" />
-    <ui:FilterDataTable DataTable="[Invoices]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="452,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[Invoices]" SelectColumnsMode="Remove">
-      <ui:FilterDataTable.Filters>
-        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-          <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
-            <ui:FilterOperationArgument.Column>
-              <InArgument x:TypeArguments="x:String">["forma"]</InArgument>
-            </ui:FilterOperationArgument.Column>
-            <ui:FilterOperationArgument.Operand>
-              <InArgument x:TypeArguments="x:String">["prze*"]</InArgument>
-            </ui:FilterOperationArgument.Operand>
-          </ui:FilterOperationArgument>
-        </scg:List>
-      </ui:FilterDataTable.Filters>
-      <ui:FilterDataTable.SelectColumns>
-        <scg:List x:TypeArguments="InArgument" Capacity="4">
-          <x:Null />
-        </scg:List>
-      </ui:FilterDataTable.SelectColumns>
-    </ui:FilterDataTable>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452,130" sap2010:WorkflowViewState.IdRef="WriteLine_15" Text="[Invoices.Rows.Count.ToString]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="452,385" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <Assign sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[TempInvoices]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[Invoices.Clone()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="820,1225" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,198" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="sd:DataTable" Name="strRow" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="610,1021" sap2010:WorkflowViewState.IdRef="Sequence_23">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,113" sap2010:WorkflowViewState.IdRef="WriteLine_13" Text="[CurrentRow(&quot;data&quot;).ToString]" />
+            <If Condition="[((Date.ParseExact(CurrentRow(&quot;data&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).Month &lt;&gt; ListOfDates(2).Month) And (Date.ParseExact(CurrentRow(&quot;wpłynęło&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture) &gt;= BorderDate.ToDateTime(TimeOnly.MinValue))) Or (Date.ParseExact(CurrentRow(&quot;data&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).Month = ListOfDates(2).Month)]" sap:VirtualizedContainerService.HintSize="548,936" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,294" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[TempInvoices]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_4" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="514,481" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,396" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,294" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:RemoveDataRow Row="{x:Null}" DataTable="[TempInvoices]" DisplayName="Remove Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="RemoveDataRow_3" RowIndex="[Invoices.Rows.IndexOf(CurrentRow)]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
+                </Sequence>
+              </If.Else>
+            </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
+    <Assign sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[TempInvoices.Copy()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ClearDataTable DataTable="[TempInvoices]" DisplayName="Clear Data Table" sap:VirtualizedContainerService.HintSize="820,120" sap2010:WorkflowViewState.IdRef="ClearDataTable_1" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Invoices]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="820,1355" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="610,1151" sap2010:WorkflowViewState.IdRef="Sequence_18">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[(Date.ParseExact(CurrentRow(&quot;data&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).Month &lt;&gt; ListOfDates(2).Month)  And (Date.ParseExact(CurrentRow(&quot;wpłynęło&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture) &lt;= Date.ParseExact(CurrentRow(&quot;termin pr.&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture)) Or (Date.ParseExact(CurrentRow(&quot;data&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).Month = ListOfDates(2).Month)]" sap:VirtualizedContainerService.HintSize="548,1066" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,424" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="354,130" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[Date.ParseExact(CurrentRow(&quot;wpłynęło&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).ToString + &quot;  -  &quot; + Date.ParseExact(CurrentRow(&quot;termin pr.&quot;).ToString, &quot;yyyy-MM-dd&quot;, CultureInfo.InvariantCulture).ToString]" />
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[CurrentRow.ItemArray]" DataTable="[TempInvoices]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="AddDataRow_5" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="514,481" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,396" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,294" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:RemoveDataRow Row="{x:Null}" DataTable="[TempInvoices]" DisplayName="Remove Data Row" sap:VirtualizedContainerService.HintSize="354,209" sap2010:WorkflowViewState.IdRef="RemoveDataRow_2" RowIndex="[Invoices.Rows.IndexOf(CurrentRow)]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                  </ui:CommentOut>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+    <Assign sap:VirtualizedContainerService.HintSize="820,122" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[TempInvoices.Copy()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,310" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,191" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From r In Invoices.Select()
+Where r("wpłynęło") &lt;= r("termin pr.")
+Select r).CopyToDataTable]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="820,309" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,190" sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="sd:DataTable">[Invoices]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="sd:DataTable">[Invoices.AsEnumerable().Where(function(r) Date.ParseExact(r("wpłynęło").ToString, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo) &lt;= Date.ParseExact(r("termin pr.").ToString, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)).CopyToDataTable]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="820,2265" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_3">
+      <ueab:ExcelProcessScopeX.Body>
+        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="786,2155" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="724,2070" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" ResizeWindow="None" WorkbookPath="[EndDate.Year.ToString + &quot;-&quot; + EndDate.Month.ToString + &quot;-prowizja.xlsx&quot;]">
+              <ueab:ExcelApplicationCard.Body>
+                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="690,1778" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Employee" sap:VirtualizedContainerService.HintSize="628,1532" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ListOfEmployees]">
+                      <ui:ForEach.Body>
+                        <ActivityAction x:TypeArguments="x:String">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:String" Name="currentEmployee" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="594,1328" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ueab:InsertSheetX DisplayName="Insert Sheet" sap:VirtualizedContainerService.HintSize="532,226" sap2010:WorkflowViewState.IdRef="InsertSheetX_1" Name="[currentEmployee]" Workbook="[Excel]" />
+                            <ueab:WriteRangeX Destination="[Excel.Sheet(currentEmployee)]" DisplayName="Write DataTable to Excel" sap:VirtualizedContainerService.HintSize="532,199" sap2010:WorkflowViewState.IdRef="WriteRangeX_2" IgnoreEmptySource="False" Source="[Invoices]" />
+                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,439" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                              <ui:CommentOut.Body>
+                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,320" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ueab:CreateTableX OutTableName="{x:Null}" DisplayName="Format as Table" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,235" sap2010:WorkflowViewState.IdRef="CreateTableX_2" Range="[Excel.Sheet(currentEmployee)]" TableName="[currentEmployee]" />
+                                </Sequence>
+                              </ui:CommentOut.Body>
+                            </ui:CommentOut>
+                            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,379" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                              <ui:CommentOut.Body>
+                                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,277" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ueab:FilterX ClearFilter="False" ColumnName="wpłynęło" DisplayName="Filter" HasHeaders="True" sap:VirtualizedContainerService.HintSize="434,192" sap2010:WorkflowViewState.IdRef="FilterX_2" Range="[Excel.Table(currentEmployee)]">
+                                    <ueab:FilterX.FilterArgument>
+                                      <ueabf:FilterArgument Mode="Advanced">
+                                        <ueabf:FilterArgument.AdvancedFiltersArgument>
+                                          <ueabf:AdvancedFilterArgument LogicalOperator="And">
+                                            <ueabf:AdvancedFilterArgument.Condition1>
+                                              <ueabf:AdvancedFilterCondition Operator="GTE" Value="[BorderDate.ToString(&quot;yyyy-MM-dd&quot;)]" />
+                                            </ueabf:AdvancedFilterArgument.Condition1>
+                                            <ueabf:AdvancedFilterArgument.Condition2>
+                                              <ueabf:AdvancedFilterCondition Value="{x:Null}" Operator="NONE" />
+                                            </ueabf:AdvancedFilterArgument.Condition2>
+                                          </ueabf:AdvancedFilterArgument>
+                                        </ueabf:FilterArgument.AdvancedFiltersArgument>
+                                        <ueabf:FilterArgument.BasicFiltersArgument>
+                                          <ueabf:BasicFilterArgument>
+                                            <ueabf:BasicFilterArgument.BasicFilters>
+                                              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
+                                                <x:Null />
+                                              </scg:List>
+                                            </ueabf:BasicFilterArgument.BasicFilters>
+                                          </ueabf:BasicFilterArgument>
+                                        </ueabf:FilterArgument.BasicFiltersArgument>
+                                      </ueabf:FilterArgument>
+                                    </ueab:FilterX.FilterArgument>
+                                  </ueab:FilterX>
+                                </Sequence>
+                              </ui:CommentOut.Body>
+                            </ui:CommentOut>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEach.Body>
+                    </ui:ForEach>
+                    <ueab:RenameSheetX DisplayName="Rename Sheet" From="[Excel.Sheet(&quot;Arkusz1&quot;)]" sap:VirtualizedContainerService.HintSize="628,161" sap2010:WorkflowViewState.IdRef="RenameSheetX_1" To="Podsumowanie" />
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelApplicationCard.Body>
+            </ueab:ExcelApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ueab:ExcelProcessScopeX.Body>
+    </ueab:ExcelProcessScopeX>
   </Sequence>
 </Activity>
